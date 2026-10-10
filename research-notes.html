@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ShenHan 的研究设想：持续感知、世界模型、动作后果、经验表示与反馈学习。">
+  <title>从具身经验到世界模型 · ShenHan</title>
+  <style>
+    :root{--paper:#f5f3ed;--ink:#233e37;--muted:#68716a;--line:#d7dbd1;--accent:#315d49;--soft:#e5e9dc;--serif:Georgia,'Songti SC','STSong',serif}
+    :root[data-theme="dark"]{--paper:#15221e;--ink:#e7eee4;--muted:#a5b3a8;--line:#35483d;--accent:#bbd8ae;--soft:#243b2e}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.95 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}a{color:var(--accent);text-underline-offset:5px}a:focus-visible{outline:2px solid var(--accent);outline-offset:5px}.wrap{width:min(760px,calc(100% - 48px));margin:auto}header{border-bottom:1px solid var(--line);padding:26px 0}nav{display:flex;justify-content:space-between;gap:20px;font-size:13px}nav a{text-decoration:none}.brand{font-weight:600;color:var(--ink);font-size:19px}main{padding:65px 0}.label{font:11px ui-monospace,SFMono-Regular,monospace;color:var(--accent);letter-spacing:1.8px}h1{font:normal clamp(34px,6vw,48px)/1.5 var(--serif);letter-spacing:-1px;margin:20px 0}h2{font:normal 26px/1.5 var(--serif);margin:0 0 17px}p{margin:0 0 19px}.lead{font-size:18px;color:var(--muted)}.notice{border-left:2px solid var(--accent);padding:15px 20px;background:var(--soft);font-size:13px;margin:30px 0 42px}section{border-top:1px solid var(--line);padding-top:32px;margin-top:35px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:6px 0 26px}.step{border:1px solid var(--line);padding:15px 12px}.step small{font:10px ui-monospace,SFMono-Regular,monospace;color:var(--muted);display:block;margin-bottom:8px}.step strong{font-weight:500;font-size:17px}.caption{font-size:13px;color:var(--muted)}ul,ol{padding-left:24px}li{margin:12px 0}.hypothesis{font:normal 22px/1.75 var(--serif);color:var(--accent)}footer{border-top:1px solid var(--line);padding:25px 0 40px;font-size:12px;color:var(--muted)}.footer-row{display:flex;justify-content:space-between;gap:20px}@media(max-width:500px){main{padding:40px 0}.wrap{width:calc(100% - 40px)}body{font-size:15px}.flow{grid-template-columns:repeat(2,1fr)}h2{font-size:24px}.footer-row{flex-direction:column;gap:10px}}
+  </style>
+</head>
+<body>
+  <header><nav class="wrap" aria-label="文章导航"><a class="brand" href="index.html">ShenHan.</a><a href="index.html#notes">← 返回研究记录</a></nav></header>
+  <main class="wrap">
+    <article>
+      <div class="label">RESEARCH NOTE / 2026.10.10</div>
+      <h1>从具身经验到世界模型</h1>
+      <p class="lead">我希望探索：智能体如何从持续的感知与行动中积累经验，预测行为的后果，并在真实反馈中修正自己的判断？</p>
+      <div class="notice">这是一份正在形成的个人研究设想。下文记录的是希望研究的问题与待检验的假设，目前尚未完成对应的世界模型训练、物理实验或实机验证。</div>
+      <section aria-labelledby="loop"><h2 id="loop">01 / 从持续感知到行动闭环</h2>
+        <p>我的出发点是：机器人的感知应当是一条持续流入的信息流。系统维护当前环境与身体的内部状态，行动之前利用世界模型预测候选动作的后果，执行一小段，再将真实反馈与预测比较。</p>
+        <div class="flow" aria-label="观察、预测、行动、反馈四个步骤"><div class="step"><small>01 / OBSERVE</small><strong>观察</strong></div><div class="step"><small>02 / PREDICT</small><strong>预测</strong></div><div class="step"><small>03 / ACT</small><strong>行动</strong></div><div class="step"><small>04 / UPDATE</small><strong>反馈与修正</strong></div></div>
+        <p class="caption">这个闭环是我希望研究的系统结构。问题包括：内部状态保留什么信息、预测覆盖多长的未来，以及如何在计算成本与行动可靠性之间取舍。</p>
+      </section>
+      <section aria-labelledby="experience"><h2 id="experience">02 / 将经历组织成可以学习的表示</h2>
+        <p>我想把一段交互经历组织为“当前观察、身体状态、动作、时间间隔、后续观察与结果”。不同感官与动作可以编码为 token 或连续向量，再与语言概念建立连接。</p>
+        <p>例如，“碎裂”应当对应物体下落、碰撞与分裂的过程；“易碎”则应影响预测与行动选择。我感兴趣的是模型如何通过经验学习动作的后果，并让语言真正参与行为决策。</p>
+        <p class="hypothesis">研究问题：显式保留动作、时间与后果，是否能帮助模型在未见条件下做出更可靠的预测？</p>
+      </section>
+      <section aria-labelledby="reasoning"><h2 id="reasoning">03 / 经验、预测与推理之间的连接</h2>
+        <p>我的一个直觉是：重复经历可能强化事件表征之间的联系，逐渐形成对后果的期待。随着对象与情境增多，系统也许可以抽象出共享条件，而不只记住某个物体的外观。</p>
+        <p>这仍是待验证的学习机制假设。“表征之间的联系变紧密”只是一个类比，还需要明确它如何表达时间方向、条件与不确定性。我希望把这种直觉转化为可以比较和检验的表示学习问题。</p>
+      </section>
+      <section aria-labelledby="feedback"><h2 id="feedback">04 / 从预测错误中修正经验</h2>
+        <p>如果模型预期杯子落地后会碎，实际却没有碎，我希望它能保存完整经历，重新检查材质、落差、碰撞状态与环境条件，再修正后续判断。</p>
+        <p>我关注不同时间尺度的反馈：当前内部状态与记忆如何立即变化，新经历又如何通过后续训练影响模型参数。接收到反馈与真正完成学习之间，需要一个明确的更新机制。</p>
+      </section>
+      <section aria-labelledby="teacher"><h2 id="teacher">05 / 世界模型与行动模型如何协作</h2>
+        <p>我也在思考让世界模型作为 teacher，为视觉—语言—动作模型（VLA）提供指导，再由更轻量的行动模型承担执行。希望减少每次行动都进行完整精细物理模拟的计算负担。</p>
+        <p>这里仍有开放问题：teacher 应提供什么学习信号、student 学到哪些能力，以及面对新环境时哪些情况仍需要重新预测与评估。</p>
+      </section>
+      <section aria-labelledby="next"><h2 id="next">06 / 从小问题开始</h2>
+        <p>当前我先参与 LeRobot 的开源贡献，从机器人数据与可复现的软件问题进入这个领域。后续希望逐步尝试表示与编码实验，再在条件成熟时研究真实环境中的学习与适应。</p>
+        <p>我的长期目标，是通过具身智能与新的模型结构释放人类劳动力。这个目标很远，我希望从能够解释、验证和持续改进的具体工作开始。</p>
+        <p><a href="https://github.com/huggingface/lerobot/pull/4902">查看我的 LeRobot 数据集修复 PR #4902 ↗</a></p>
+      </section>
+    </article>
+  </main>
+  <footer><div class="wrap footer-row"><span>ShenHan · 研究设想与持续探索</span><a href="index.html">返回首页 ↑</a></div></footer>
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('shenhan-theme')==='dark'?'dark':'light'}catch(_){}</script>
+</body>
+</html>

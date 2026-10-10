@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ShenHan 的研究与探索：具身智能、大模型、神经科学启发的模型架构，以及用智能技术释放人类劳动力的长期愿景。">
+  <meta name="color-scheme" content="light dark">
+  <title>ShenHan · 智能、研究与探索</title>
+  <style>
+    :root { --paper:#f5f3ed; --ink:#233e37; --muted:#68716a; --line:#d7dbd1; --accent:#315d49; --soft:#e5e9dc; --white:#fbfaf6; --serif:Georgia,'Songti SC','STSong',serif; }
+    :root[data-theme="dark"] { --paper:#15221e; --ink:#e7eee4; --muted:#a5b3a8; --line:#35483d; --accent:#bbd8ae; --soft:#243b2e; --white:#1b2c25; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:100px; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif; line-height:1.7; transition:background .2s,color .2s; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    a:focus-visible,button:focus-visible { outline:2px solid var(--accent); outline-offset:6px; }
+    .wrap { width:min(1140px,calc(100% - 80px)); margin:auto; }
+    .skip { position:absolute; left:16px; top:-100px; padding:10px; background:var(--paper); z-index:5; }
+    .skip:focus { top:10px; }
+    header { border-bottom:1px solid var(--line); }
+    nav { min-height:96px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:13px; font-size:21px; font-weight:600; letter-spacing:-.5px; }
+    .monogram { display:grid; place-items:center; width:37px; height:37px; border:1px solid var(--ink); border-radius:50%; font:italic 24px var(--serif); }
+    .nav-links { display:flex; align-items:center; gap:32px; font-size:13px; }
+    .nav-links a { color:var(--muted); }
+    .nav-links a:hover { color:var(--ink); }
+    .theme { display:grid; place-items:center; width:34px; height:34px; border:1px solid var(--line); background:transparent; color:var(--ink); border-radius:50%; cursor:pointer; }
+    .theme svg { width:16px; height:16px; }
+    .hero { padding:82px 0 76px; display:grid; grid-template-columns:1.15fr 1fr; gap:66px; align-items:center; }
+    .eyebrow { display:flex; align-items:center; gap:10px; font-size:11px; letter-spacing:2px; font-weight:600; color:var(--accent); text-transform:uppercase; }
+    .eyebrow::before { content:''; width:6px; height:6px; background:var(--accent); border-radius:50%; }
+    h1 { font:normal clamp(54px,5.7vw,72px)/1.25 var(--serif); letter-spacing:-3px; margin:27px 0 25px; }
+    h1 em { font-weight:normal; color:var(--accent); }
+    .hero-copy { max-width:420px; font-size:17px; color:var(--muted); line-height:1.95; }
+    .hero-actions { display:flex; gap:24px; align-items:center; margin-top:32px; font-size:13px; }
+    .button { display:inline-flex; gap:26px; align-items:center; background:var(--ink); color:var(--paper); border:1px solid var(--ink); padding:12px 19px; border-radius:2px; }
+    .text-link { display:inline-flex; align-items:center; gap:12px; padding:8px 0; }
+    .text-link:hover { text-decoration:underline; text-underline-offset:6px; }
+    .art { position:relative; aspect-ratio:1/1.08; background:var(--soft); border:1px solid var(--line); overflow:hidden; }
+    .art svg { width:100%; height:100%; color:var(--accent); }
+    .art-label { position:absolute; bottom:23px; left:25px; right:25px; display:flex; justify-content:space-between; font:10px/1.6 ui-monospace,SFMono-Regular,monospace; letter-spacing:1.5px; color:var(--accent); }
+    .intro-line { display:flex; justify-content:space-between; gap:24px; border-top:1px solid var(--line); padding:22px 0; color:var(--muted); font-size:11px; letter-spacing:1.4px; }
+    section { border-top:1px solid var(--line); padding:58px 0; }
+    .section-grid { display:grid; grid-template-columns:260px 1fr; gap:60px; }
+    .section-number { font:11px ui-monospace,SFMono-Regular,monospace; color:var(--muted); letter-spacing:1.8px; }
+    h2 { font:normal 32px/1.4 var(--serif); letter-spacing:-.7px; margin:12px 0 0; }
+    .about-lead { font:normal 25px/1.65 var(--serif); margin:0 0 20px; max-width:650px; }
+    .body-copy { color:var(--muted); font-size:14px; max-width:650px; margin:0; }
+    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+    .tag { padding:5px 12px; border:1px solid var(--line); font-size:11px; color:var(--muted); }
+    .interest { display:grid; grid-template-columns:35px 1fr; gap:18px; border-top:1px solid var(--line); padding:24px 0; }
+    .interest:first-child { border-top:0; padding-top:0; }
+    .interest:last-child { padding-bottom:0; }
+    .interest-index { color:var(--accent); font:italic 24px var(--serif); }
+    .interest h3 { font-size:22px; }
+    .interest p { margin:0; color:var(--muted); font-size:14px; max-width:630px; }
+    .interest-label { color:var(--accent); font:10px ui-monospace,SFMono-Regular,monospace; letter-spacing:1px; margin-bottom:9px; }
+    .project { display:grid; grid-template-columns:1fr auto; gap:30px; padding:27px 0; border-top:1px solid var(--line); }
+    .project:first-child { border-top:0; padding-top:0; }
+    h3 { margin:0 0 8px; font:normal 24px var(--serif); }
+    .project p { margin:0; color:var(--muted); font-size:13px; max-width:560px; }
+    .project-meta { display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); font:10px ui-monospace,SFMono-Regular,monospace; margin-top:18px; }
+    .project-arrow { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--line); border-radius:50%; font-size:20px; transition:background .2s; }
+    .project:hover .project-arrow { background:var(--soft); }
+    .notebook { padding:24px; border:1px dashed var(--line); background:var(--white); }
+    .notebook-title { display:flex; justify-content:space-between; align-items:center; margin-bottom:9px; font-size:13px; }
+    .status { color:var(--accent); font-size:10px; padding:3px 8px; background:var(--soft); }
+    .contact { display:flex; align-items:center; justify-content:space-between; gap:32px; }
+    .contact h2 { margin:0 0 12px; font-size:39px; }
+    footer { padding:25px 0 33px; border-top:1px solid var(--line); color:var(--muted); font-size:10px; }
+    .footer-row { display:flex; justify-content:space-between; gap:20px; letter-spacing:.4px; }
+    .footer-row a:hover { text-decoration:underline; }
+    @media (max-width:850px) { .wrap { width:calc(100% - 48px); } .hero { gap:32px; padding:62px 0; } h1 { font-size:48px; letter-spacing:-2px; } .hero-copy { font-size:15px; } .section-grid { grid-template-columns:180px 1fr; gap:32px; } .nav-links { gap:22px; } }
+    @media (max-width:600px) { .wrap { width:calc(100% - 40px); } nav { min-height:80px; gap:14px; } .brand { font-size:18px; gap:8px; } .monogram { width:30px; height:30px; font-size:21px; } .nav-links { gap:15px; font-size:12px; } .nav-links .desktop-link { display:none; } .hero { grid-template-columns:1fr; padding:50px 0 35px; gap:38px; } h1 { font-size:clamp(42px,11vw,58px); } .hero-copy { max-width:350px; } .art { aspect-ratio:1.25; } .art-label { bottom:17px; left:18px; right:18px; font-size:9px; } .intro-line { font-size:9px; gap:12px; letter-spacing:.8px; } section { padding:38px 0; } .section-grid { grid-template-columns:1fr; gap:25px; } h2 { font-size:27px; } .about-lead { font-size:22px; } .project { gap:16px; } .contact { flex-direction:column; align-items:flex-start; gap:25px; } .contact h2 { font-size:33px; } .footer-row { flex-direction:column; gap:8px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none!important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header>
+    <nav class="wrap" aria-label="主导航">
+      <a class="brand" href="#main" aria-label="ShenHan 首页"><span class="monogram" aria-hidden="true">S</span>ShenHan<span style="color:var(--accent)">.</span></a>
+      <div class="nav-links">
+        <a href="#interests">研究</a><a href="#projects">项目</a><a class="desktop-link" href="#notes">记录</a>
+        <button class="theme" id="theme-toggle" type="button" aria-label="切换到深色主题" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 14A8.6 8.6 0 0 1 10 3.5 8.8 8.8 0 1 0 20.5 14Z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main class="wrap" id="main">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">ShenHan · Research & exploration</div>
+        <h1>探索智能，<br>走向<em>真实世界。</em></h1>
+        <p class="hero-copy">我是 ShenHan，希望围绕具身智能、世界模型、大模型与神经科学启发的模型架构开展研究。这里记录我的兴趣、探索过程与公开项目。</p>
+        <div class="hero-actions"><a class="button" href="#interests">我的研究兴趣 <span aria-hidden="true">↓</span></a><a class="text-link" href="#projects">探索项目 <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="art" role="img" aria-label="绿色线条构成的抽象轨道图形">
+        <svg viewBox="0 0 450 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" stroke="currentColor" stroke-opacity=".1" stroke-width=".6"/></pattern></defs>
+          <path fill="url(#grid)" d="M0 0H450V480H0Z"/>
+          <g transform="translate(225 228)">
+            <circle r="154" stroke="currentColor" stroke-opacity=".18"/>
+            <circle r="108" stroke="currentColor" stroke-opacity=".18"/>
+            <circle r="61" stroke="currentColor" stroke-opacity=".18"/>
+            <path d="M-181 0H181M0-181V181" stroke="currentColor" stroke-opacity=".22" stroke-dasharray="3 5"/>
+            <g stroke="currentColor" stroke-width="1.1">
+              <ellipse rx="151" ry="61" transform="rotate(-52)"/><ellipse rx="151" ry="61" transform="rotate(-36)"/>
+              <ellipse rx="151" ry="61" transform="rotate(-20)"/><ellipse rx="151" ry="61" transform="rotate(-4)"/>
+              <ellipse rx="151" ry="61" transform="rotate(12)"/><ellipse rx="151" ry="61" transform="rotate(28)"/>
+              <ellipse rx="151" ry="61" transform="rotate(44)"/><ellipse rx="151" ry="61" transform="rotate(60)"/>
+              <ellipse rx="151" ry="61" transform="rotate(76)"/><ellipse rx="151" ry="61" transform="rotate(92)"/>
+            </g>
+            <circle cx="117" cy="-99" r="5" fill="currentColor"/><circle r="4" fill="currentColor"/>
+          </g>
+          <path d="M20 30V20H30M420 20H430V30M20 450V460H30M420 460H430V450" stroke="currentColor" stroke-opacity=".5"/>
+        </svg>
+        <div class="art-label"><span>EXPLORATION, IN PROGRESS</span><span>FIG. 01</span></div>
+      </div>
+    </div>
+    <div class="intro-line"><span>具身智能 · 世界模型 · 神经启发</span><span>HAN-SHEN-MATH / GITHUB</span></div>
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-grid">
+        <div><div class="section-number">01 / VISION</div><h2 id="about-title">为什么探索智能</h2></div>
+        <div><p class="about-lead">让智能技术释放人类的劳动力，<br>让人们拥有更多时间与自由。</p><p class="body-copy">这是我的长期梦想。我希望从具体问题和可验证的研究出发，探索智能系统如何理解环境、学习与行动，逐步把这个愿景转化为可以实践的工作。</p><div class="tags"><span class="tag">长期愿景</span><span class="tag">开放探索</span><span class="tag">从具体问题出发</span></div></div>
+      </div>
+    </section>
+    <section id="interests" aria-labelledby="interests-title">
+      <div class="section-grid">
+        <div><div class="section-number">02 / INTERESTS</div><h2 id="interests-title">研究兴趣</h2></div>
+        <div>
+          <div class="interest"><span class="interest-index" aria-hidden="true">i.</span><div><div class="interest-label">EMBODIED INTELLIGENCE & WORLD MODELS</div><h3>具身智能与世界模型</h3><p>关注持续感知、行动前的后果预测，以及真实反馈对经验的修正。希望探索“观察—预测—行动—反馈”的学习闭环。</p></div></div>
+          <div class="interest"><span class="interest-index" aria-hidden="true">ii.</span><div><div class="interest-label">LARGE MODELS</div><h3>大模型</h3><p>关注大模型的学习、推理与规划能力。希望研究这些能力如何支持更可靠、更自主的智能系统。</p></div></div>
+          <div class="interest"><span class="interest-index" aria-hidden="true">iii.</span><div><div class="interest-label">NEUROSCIENCE-INSPIRED ARCHITECTURES</div><h3>神经科学启发的模型架构</h3><p>对从离子通道到神经群体的多尺度数学描述感兴趣，希望理解学习、记忆与认知机制，并从中寻找模型架构的灵感。</p></div></div>
+        </div>
+      </div>
+    </section>
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-grid">
+        <div><div class="section-number">03 / PROJECTS</div><h2 id="projects-title">当前项目与贡献</h2></div>
+        <div>
+          <a class="project" href="https://github.com/huggingface/lerobot/pull/4902"><div><h3>LeRobot · 数据集边界修复</h3><p>为零尺寸数值特征的录制与读取提交修复，使其保留声明的数据类型与完整形状。实现细节与最新审阅状态可在 GitHub 查看。</p><div class="project-meta"><span>开源贡献</span><span>PR #4902 · 已提交</span><span>PYTHON / DATASETS</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></a>
+          <a class="project" href="https://github.com/Han-Shen-math/lerobot"><div><h3>LeRobot · 项目仓库</h3><p>从 Hugging Face LeRobot 派生的公开仓库，作为机器人学习工具的代码探索与贡献入口。</p><div class="project-meta"><span>FORK · HUGGINGFACE / LEROBOT</span><span>PYTHON</span></div></div><span class="project-arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+    <section id="notes" aria-labelledby="notes-title">
+      <div class="section-grid">
+        <div><div class="section-number">04 / NOTES</div><h2 id="notes-title">思考与研究记录</h2></div>
+        <div class="notebook"><div class="notebook-title"><span>从具身经验到世界模型</span><span class="status">研究设想</span></div><p class="body-copy">如何把持续感知、动作后果和语言概念连接起来？关于预测、反馈与经验形成的一份初步研究笔记。</p><a class="text-link" href="research-notes.html" style="font-size:12px;margin-top:12px">阅读这份设想 <span aria-hidden="true">↗</span></a></div>
+      </div>
+    </section>
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="contact"><div><div class="section-number">05 / CONNECT</div><h2 id="contact-title">让想法继续生长。</h2><p class="body-copy">欢迎通过 GitHub 了解我的公开项目与探索。</p></div><a class="button" href="https://github.com/Han-Shen-math">访问我的 GitHub <span aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-row"><span>© 2026 ShenHan · 个人主页</span><a href="#main">回到顶部 ↑</a></div></footer>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const button = document.getElementById('theme-toggle');
+      const apply = (dark) => {
+        root.dataset.theme = dark ? 'dark' : 'light';
+        button.setAttribute('aria-pressed', String(dark));
+        button.setAttribute('aria-label', dark ? '切换到浅色主题' : '切换到深色主题');
+      };
+      try { apply(localStorage.getItem('shenhan-theme') === 'dark'); } catch (_) { apply(false); }
+      button.addEventListener('click', () => {
+        const dark = root.dataset.theme !== 'dark';
+        apply(dark);
+        try { localStorage.setItem('shenhan-theme', dark ? 'dark' : 'light'); } catch (_) {}
+      });
+    })();
+  </script>
+</body>
+</html>
