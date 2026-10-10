@@ -28,8 +28,9 @@ GitHub Pages 静态研究主页，围绕具身智能与世界模型、大模型�
 
 在 `index.html` 中修改简介、项目和记录入口；研究笔记保存在 `research-notes.html`。提交到 `main` 后会触发自动更新。
 
-当前项目暂时只收录 LeRobot：
+当前项目与贡献：
 
+- MetaBCI MultiCSP 兼容性修复：[已提交、未合并的 PR #119](https://github.com/TBC-TJU/MetaBCI/pull/119)与[固定提交的 Mac 离线验证报告](https://github.com/Han-Shen-math/MetaBCI/blob/42932cf70bc70a9314cc0ce917b0d5add4e4e387/docs/validation/csp-ovo-mac.md)。保留公开三维 EEG 接口与原 CSP 计算；scikit-learn 1.5.2、1.6.1、1.9.1 各 178 项算法与回归测试通过。BNCI2014-001 三名预选受试者的跨日离线对照中，每版本 864 个测试试次均无预测变化。验证范围是所述 Mac 环境和兼容路径，不代表准确率提升、实时或硬件验证。
 - 数据集边界修复：[已提交的 PR #4902](https://github.com/huggingface/lerobot/pull/4902)。
 - VLA-JEPA RoPE 修复验证与递归误差分析：[完整研究报告](https://github.com/Han-Shen-math/lerobot/blob/83ff921b9541ffbc425116d0fb1ceea8f45c6cc4/benchmarks/vla_jepa_rope_study/REPORT.md)与[上游贡献评论](https://github.com/huggingface/lerobot/pull/4835#issuecomment-6093995249)。原修正由上游 PR 作者提出，此项贡献是组件级实验验证与数学诊断。
 
