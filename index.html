@@ -150,18 +150,22 @@
         <div><div class="section-number">03 / PROJECTS</div><h2 id="projects-title">当前项目与贡献</h2></div>
         <div>
           <div class="contribution-summary">
-            <div class="tags"><span class="tag">5 个本人 PR</span><span class="tag">1 项社区验证</span><span class="tag">2 条问题诊断</span></div>
-            <p class="body-copy">近期公开贡献，围绕机器人学习、脑机接口与脉冲神经网络。区分本人实现、社区验证和数学诊断，记录可追溯的证据与尚未完成的工作。</p>
-            <p class="contribution-note">状态核实：<time datetime="2026-10-11T08:56:24Z">2026-10-11 08:56 UTC</time>。SpikingJelly #773 已合并，最新 CI 与 Changelog 通过；其余 5 个相关 PR 仍未合并，主要上游 CI 为 <code>action_required</code>、任务列表为空，等待维护者批准。验证数字来自公开 PR、CI 或固定提交报告。</p>
+            <div class="tags"><span class="tag">6 个本人 PR</span><span class="tag">1 项社区验证</span><span class="tag">3 条技术讨论</span></div>
+            <p class="body-copy">目前列出 10 项已核实的公开贡献，围绕机器人学习、脑机接口、脉冲神经网络与神经动力学。区分本人实现、社区验证和技术研究，记录可追溯的证据与尚未完成的工作；不宣称穷尽历史贡献。</p>
+            <p class="contribution-note">状态核实：<time datetime="2026-10-12T03:48:05Z">2026-10-12 03:48 UTC</time>。SpikingJelly #773 已合并，最终 CI 与 Changelog 通过；其余 6 个相关 PR 仍未合并，主要上游 CI 为 <code>action_required</code>、任务列表为空，等待维护者批准。验证数字来自公开 PR、CI 或固定提交报告；本地验证记录不等于托管 CI 通过。</p>
           </div>
-          <h3 class="contribution-group">本人提交 / IMPLEMENTATION · 5 项</h3>
+          <h3 class="contribution-group">本人提交 / IMPLEMENTATION · 6 项</h3>
           <div class="contribution-list">
+            <article class="project" id="torcheeg-plv">
+              <div><h3>TorchEEG · 标准 PLV 相位锁定值变换</h3><p>新增标准 PhaseLockingValue EEG 变换，计算相位差单位复向量平均值的模长；说明旧 PhaseLockingCorrelation 的历史行为，保持原有计算与 API 兼容。针对 issue #105 提交实现与数学说明。</p><p class="evidence">验证：作者在 PR 中报告 Mac CPU 的 17 项专项与 65 项相关测试通过，以及旧行为等价检查、聚焦相关 API 的严格文档构建与 wheel 安装数值检查。未运行全量套件或真实 EEG 分类 benchmark。PR 开放、非草稿，暂无评论或评审；托管 Tests 尚待批准，未运行任务。</p><div class="project-meta"><span>本人作者 · 新变换 / 兼容性</span><span class="status">#166 · 开放 / 未合并</span><span>PYTHON / EEG</span></div><div class="project-meta"><a class="text-link" href="https://github.com/torcheeg/torcheeg/pull/166">上游 PR 与作者验证记录 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://raw.githubusercontent.com/Han-Shen-math/torcheeg/03a85ec573049bcc09a95d2d49a2d23cb742041c/docs/source/phase_locking_value.rst">固定提交的数学与兼容性说明 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/torcheeg/torcheeg/actions/runs/38181660684">Tests · 等待批准 <span aria-hidden="true">↗</span></a></div></div>
+              <a class="project-arrow" href="https://github.com/torcheeg/torcheeg/pull/166" aria-label="查看标准 PhaseLockingValue PR #166">↗</a>
+            </article>
             <article class="project">
               <div><h3>MetaBCI · 未训练 EEG Transformer</h3><p>独立实现受 Conformer 启发的 EEG 编码与分类框架，提供 small / large 预设、按 trial ID 对齐的辅助特征与缺失掩码，以及显式训练和 checkpoint 接口。</p><p class="evidence">验证：Mac CPU 的 91 项软件检查通过，预设与辅助输入前向结果均为有限值。未执行拟合或优化器步骤；实际训练与恢复、真实 EEG 准确率及 CUDA 尚未验证。</p><div class="project-meta"><span>本人作者 · 功能原型</span><span class="status">#120 · 草稿 / 未合并</span><span>PYTHON / EEG</span></div><div class="project-meta"><a class="text-link" href="https://github.com/TBC-TJU/MetaBCI/pull/120">上游 PR 与验证记录 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://raw.githubusercontent.com/Han-Shen-math/MetaBCI/76b82a3f5d68493e989a0608d1849dd15540b33f/docs/source/eeg_transformer.rst">固定提交的功能与限制 <span aria-hidden="true">↗</span></a></div></div>
               <a class="project-arrow" href="https://github.com/TBC-TJU/MetaBCI/pull/120" aria-label="查看 EEG Transformer 草稿 PR #120">↗</a>
             </article>
             <article class="project">
-              <div><h3>LeRobot · 可选 CUDA 图像预处理</h3><p>为 HIL-SERL 增加可选 image_device：先传输 uint8 帧，再在所选设备上转换布局与归一化。保留 CPU 默认路径、状态张量位置、旧配置兼容和 MPS 回退。</p><p class="evidence">验证：Mac 上 39 项测试通过、3 项 CUDA 测试跳过，修改文件的 pre-commit 检查通过。草稿等待真实 CUDA 验证与 API 反馈；尚无实测速率提升、训练或机器人 rollout 结论。</p><div class="project-meta"><span>本人作者 · 功能原型</span><span class="status">#4916 · 草稿 / 未合并</span><span>HIL-SERL / PREPROCESSING</span></div><div class="project-meta"><a class="text-link" href="https://github.com/huggingface/lerobot/pull/4916">上游 PR 与测试范围 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://raw.githubusercontent.com/Han-Shen-math/lerobot/14bb151979ca2f2658c69ba6133e903472cef9e5/docs/source/hilserl.mdx">固定提交的使用文档 <span aria-hidden="true">↗</span></a></div></div>
+              <div><h3>LeRobot · 可选 CUDA 图像预处理</h3><p>为 HIL-SERL 增加可选 image_device：先传输 uint8 帧，再在所选设备上转换布局与归一化。保留 CPU 默认路径、状态张量位置、旧配置兼容和 MPS 回退。</p><p class="evidence">验证：Mac 上 39 项测试通过、3 项 CUDA 测试跳过，修改文件的 pre-commit 检查通过。草稿等待真实 CUDA 验证与 API 反馈；尚无实测速率提升、训练或机器人 rollout 结论。s1lent4gnt 于 2026-10-11 18:40 UTC 自行认领，尚无评审或批准。</p><div class="project-meta"><span>本人作者 · 功能原型</span><span class="status">#4916 · 草稿 / 未合并</span><span>HIL-SERL / PREPROCESSING</span></div><div class="project-meta"><a class="text-link" href="https://github.com/huggingface/lerobot/pull/4916">上游 PR 与测试范围 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://raw.githubusercontent.com/Han-Shen-math/lerobot/14bb151979ca2f2658c69ba6133e903472cef9e5/docs/source/hilserl.mdx">固定提交的使用文档 <span aria-hidden="true">↗</span></a></div></div>
               <a class="project-arrow" href="https://github.com/huggingface/lerobot/pull/4916" aria-label="查看 CUDA 图像预处理草稿 PR #4916">↗</a>
             </article>
             <article class="project">
@@ -184,8 +188,12 @@
               <a class="project-arrow" href="https://github.com/Han-Shen-math/lerobot/tree/83ff921b9541ffbc425116d0fb1ceea8f45c6cc4/benchmarks/vla_jepa_rope_study" aria-label="查看 RoPE 验证的固定代码、日志与检查点">↗</a>
             </article>
           </div>
-          <h3 class="contribution-group">问题诊断 / DISCUSSION · 2 项</h3>
+          <h3 class="contribution-group">问题诊断与研究 / DISCUSSION · 3 项</h3>
           <div class="contribution-list">
+            <article class="project" id="brainpy-topology">
+              <div><h3>BrainPy · 零曲线分支连通性研究</h3><p>围绕 issue #718 的零曲线分支误连接，研究一类通用光滑方程算法的限制，探索解析分支、认证多项式细分与延拓方法；无法认证时保留未决结果。</p><p class="evidence">证据：公开的 15 页 AI 辅助研究说明与复现包，包内日志记录 100 项测试通过、87 次追踪实验，包含已认证、未决与不支持的情形。属于独立研究原型，未集成 BrainPy、未复现原始 HH 模型，也未完成正式同行评审；这些记录未经过本次独立重跑。评论于 2026-10-12 01:34:38 UTC 发布，issue 仍开放，暂无后续回复。</p><div class="project-meta"><span>本人角色 · 独立研究 / 技术分析</span><span class="status">ISSUE #718 · 研究已发布</span><span>NEURAL DYNAMICS / TOPOLOGY</span></div><div class="project-meta"><a class="text-link" href="https://github.com/brainpy/BrainPy/issues/718#issuecomment-6116187018">本人研究评论 <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/user-attachments/files/33317095/smooth_formula_topology.pdf">15 页研究 PDF <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/user-attachments/files/33317096/brainpy-718-topology-research.zip">复现包与保存日志 <span aria-hidden="true">↗</span></a></div></div>
+              <a class="project-arrow" href="https://github.com/brainpy/BrainPy/issues/718#issuecomment-6116187018" aria-label="查看零曲线分支连通性研究评论">↗</a>
+            </article>
             <article class="project">
               <div><h3>LeRobot · 动作变换顺序与边界诊断</h3><p>在 issue #2108 中诊断自定义动作边界路径的 tanh / rescale 顺序，以及缺失的 domain / codomain 定义，给出解析反例与 AffineTransform 建议。默认无自定义边界路径不受影响。</p><p class="evidence">证据：公开代码审阅与数学例子；诊断评论已发布，issue 仍开放。未提交此问题的修复，也未声称训练或 GPU 验证。</p><div class="project-meta"><span>本人角色 · 诊断与建议</span><span class="status">ISSUE #2108 · 开放</span></div><div class="project-meta"><a class="text-link" href="https://github.com/huggingface/lerobot/issues/2108#issuecomment-6103122860">本人诊断评论与源码依据 <span aria-hidden="true">↗</span></a></div></div>
               <a class="project-arrow" href="https://github.com/huggingface/lerobot/issues/2108#issuecomment-6103122860" aria-label="查看动作变换顺序诊断评论">↗</a>
