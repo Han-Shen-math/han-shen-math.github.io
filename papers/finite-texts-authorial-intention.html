@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Finite Texts, Authorial Intention, and Philosophical Criticism — an English draft on interpretation, inductive bias, and interactive calibration. 17 October 2026.">
+  <link rel="canonical" href="https://han-shen-math.github.io/papers/finite-texts-authorial-intention.html">
+  <title>Finite Texts, Authorial Intention, and Philosophical Criticism · ShenHan</title>
+  <style>
+    :root { --paper:#f5f3ed; --ink:#233e37; --muted:#68716a; --line:#d7dbd1; --accent:#315d49; --soft:#e5e9dc; --white:#fbfaf6; --serif:Georgia,'Times New Roman','Songti SC',serif; }
+    :root[data-theme="dark"] { --paper:#15221e; --ink:#e7eee4; --muted:#a5b3a8; --line:#35483d; --accent:#bbd8ae; --soft:#243b2e; --white:#1b2c25; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:24px; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.8 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif; }
+    a { color:var(--accent); text-underline-offset:5px; overflow-wrap:anywhere; }
+    a:focus-visible,button:focus-visible,summary:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+    button { font:inherit; }
+    .wrap { width:min(800px,calc(100% - 48px)); margin:auto; }
+    .skip { position:absolute; left:16px; top:-100px; padding:10px; background:var(--paper); z-index:5; }
+    .skip:focus { top:10px; }
+    header { border-bottom:1px solid var(--line); }
+    nav { min-height:85px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    nav a { text-decoration:none; }
+    .brand { font-size:20px; font-weight:600; color:var(--ink); }
+    .nav-actions { display:flex; align-items:center; gap:22px; font-size:12px; }
+    .theme { width:34px; height:34px; border:1px solid var(--line); border-radius:50%; background:transparent; color:var(--ink); cursor:pointer; }
+    .theme svg { display:block; width:16px; height:16px; margin:auto; }
+    main { padding:64px 0 72px; }
+    .eyebrow { color:var(--accent); font:11px/1.7 ui-monospace,SFMono-Regular,monospace; letter-spacing:1.5px; }
+    h1 { font:normal clamp(31px,5.4vw,45px)/1.3 var(--serif); letter-spacing:-.7px; margin:20px 0 16px; overflow-wrap:anywhere; }
+    .subtitle { color:var(--muted); margin:0 0 22px; font-size:16px; }
+    .metadata { display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; color:var(--muted); font-size:12px; }
+    .badge { padding:4px 10px; background:var(--soft); color:var(--accent); }
+    .actions { display:flex; align-items:center; flex-wrap:wrap; gap:14px 24px; margin-top:26px; font-size:13px; }
+    .button { display:inline-flex; align-items:center; gap:24px; padding:11px 17px; text-decoration:none; border:1px solid var(--ink); background:var(--ink); color:var(--paper); }
+    .intro { color:var(--muted); max-width:680px; margin:26px 0 0; font-size:14px; }
+    details { margin:35px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:17px 0; }
+    summary { color:var(--accent); cursor:pointer; font-size:13px; }
+    .contents { display:grid; gap:9px; padding:17px 0 3px; font-size:13px; }
+    .contents a { text-decoration:none; }
+    .contents a:hover { text-decoration:underline; }
+    .essay { font:19px/1.85 var(--serif); overflow-wrap:anywhere; }
+    .essay p { margin:0 0 21px; }
+    .essay > p:first-child { color:var(--muted); font-size:17px; }
+    .essay h2 { border-top:1px solid var(--line); padding-top:27px; margin:38px 0 21px; font:normal 27px/1.4 var(--serif); }
+    .essay blockquote { border-left:2px solid var(--accent); margin:25px 0; padding:14px 22px; background:var(--white); }
+    .essay blockquote p { margin:0 0 10px; }
+    .essay blockquote p:last-child { margin-bottom:0; }
+    .essay #references ~ p { font-size:16px; }
+    .endnote { border-top:1px solid var(--line); padding-top:25px; margin-top:42px; font-size:12px; color:var(--muted); }
+    footer { border-top:1px solid var(--line); padding:25px 0 36px; font-size:12px; color:var(--muted); }
+    .footer-row { display:flex; justify-content:space-between; gap:20px; }
+    @media(max-width:600px) { .wrap { width:calc(100% - 40px); } nav { min-height:72px; } .nav-actions { gap:14px; } main { padding:42px 0; } .essay { font-size:17px; line-height:1.85; } .essay h2 { font-size:24px; } .essay blockquote { padding:14px 16px; } .footer-row { flex-direction:column; gap:9px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#paper">跳到文章正文</a>
+  <header><nav class="wrap" aria-label="文章导航"><a class="brand" href="../index.html">ShenHan.</a><div class="nav-actions"><a href="../index.html#papers">← 论文与手稿</a><button class="theme" id="theme-toggle" type="button" aria-label="切换到深色主题" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.5 14A8.6 8.6 0 0 1 10 3.5 8.8 8.8 0 1 0 20.5 14Z"/></svg></button></div></nav></header>
+  <main class="wrap" id="paper">
+    <div class="eyebrow">PAPERS & MANUSCRIPTS / 2026</div>
+    <h1 lang="en">Finite Texts, Authorial Intention, and Philosophical Criticism</h1>
+    <p class="subtitle">有限文本、作者意图与哲学批判</p>
+    <div class="metadata"><span class="badge">英文初稿 · English draft</span><time datetime="2026-10-17" lang="en">17 October 2026</time><span>PDF · 6 页</span></div>
+    <div class="actions"><a class="button" href="../assets/papers/finite-texts-authorial-intention-2026-10-17.pdf">阅读 PDF <span aria-hidden="true">↗</span></a><a href="../assets/papers/finite-texts-authorial-intention-2026-10-17.pdf" download>下载英文 PDF ↓</a><a href="#abstract">阅读网页全文 ↓</a></div>
+    <p class="intro">以归纳偏置与互动校准为线索，讨论有限文本下的意图归属，以及误解仍可能带来的观点评估、概念澄清和对群体解释实践的认识。下方为英文初稿全文，与 PDF 对应。</p>
+    <details><summary>文章目录 / Contents</summary><div class="contents" lang="en"><a href="#abstract">Abstract</a><a href="#1-introduction">1. Introduction</a><a href="#2-finite-texts-and-the-reconstruction-of-interpretive-frameworks">2. Finite Texts and the Reconstruction of Interpretive Frameworks</a><a href="#3-inductive-bias-in-model-formation-and-revision">3. Inductive Bias in Model Formation and Revision</a><a href="#4-interactive-calibration-through-mutual-interpretation">4. Interactive Calibration through Mutual Interpretation</a><a href="#5-shared-understanding-and-an-author-s-initial-intention">5. Shared Understanding and an Author&#x27;s Initial Intention</a><a href="#6-why-criticism-can-remain-meaningful-when-it-misses-the-intended-meaning">6. Why Criticism Can Remain Meaningful When It Misses the Intended Meaning</a><a href="#7-reflexivity-and-the-continuation-of-criticism">7. Reflexivity and the Continuation of Criticism</a><a href="#references">References</a></div></details>
+    <article class="essay" lang="en" aria-label="English draft full text">
+<p><em>This essay forms a methodological component of a broader inquiry into AI and the philosophy of computation.</em></p>
+<h2 id="abstract">Abstract</h2>
+<p>Philosophical criticism usually addresses views expressed in texts, yet moving from a text to a view already requires interpretation. Readers draw on experience, semantic expectations, implicit premises, and patterns of inference to reconstruct a view that can be assessed. This essay borrows the concept of inductive bias to explain why interpreters select certain frameworks and how they use prior information to form and revise models of other people. Through a model of communication in which participants repeatedly exchange teacher and student roles, it argues that interaction can both calibrate interpretation and change what participants intend to express. The formation of a shared understanding therefore cannot simply be equated with the recovery of an author&#x27;s initial intention. On this basis, the essay argues that the philosophical value of criticism does not depend entirely on successful attribution of intention. Criticism that misses the intended meaning may still raise well-supported objections to a reconstructed view, clarify concepts, and reveal, to some extent, interpretive tendencies shared by a group. Examining recurring word meanings, implicit premises, and patterns of inference in criticism thus offers one route to understanding a group&#x27;s shared interpretive practices. This examination itself remains interpretive and open to revision.</p>
+<p><strong>Keywords:</strong> authorial intention; inductive bias; philosophical criticism; interactive calibration; shared understanding</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>When criticizing a philosophical text, we seem first to know what the author has said and then to assess whether the premises are acceptable and the reasoning holds. Yet this initial &quot;knowing&quot; already involves substantial interpretation. Readers must judge which sentences express the same proposition, whether a word retains the same meaning across passages, which premises an inference leaves unstated, and what logic the author employs.</p>
+<p>Even if we consider all of an author&#x27;s available earlier writings, the material remains finite. The same material may be compatible with more than one interpretive framework, and readers normally select some frameworks as the basis of their understanding. Criticism therefore initially addresses a view reconstructed by the reader. This view may correspond to what the author actually intended to express, but the two cannot simply be equated because the reader regards a particular interpretation as the most natural one. Where the author cannot be questioned, reconstruction depends especially on the available texts and on interpretive habits formed through earlier communication.</p>
+<p>This problem concerns both the limits and the value of criticism. Critics need to distinguish the view their criticism addresses from whether that view has been accurately attributed to the author. At the same time, criticism may produce further philosophical insights even when it does not accurately grasp the intended meaning. It may assess a reconstructed view, prompt participants to clarify concepts, and make visible a group&#x27;s ordinarily unstated ways of understanding. This essay connects these concerns to examine what philosophical criticism can accomplish under conditions of finite textual evidence.</p>
+<h2 id="2-finite-texts-and-the-reconstruction-of-interpretive-frameworks">2. Finite Texts and the Reconstruction of Interpretive Frameworks</h2>
+<p>Suppose an author writes near the beginning of an article, &quot;Humans should get along well with AI,&quot; but concludes, &quot;Humans should not get along well with AI.&quot; A reader might accuse the author of inconsistency. That accusation already requires a particular interpretation: the statements concern the same objects, the relevant context has not changed, &quot;should&quot; and &quot;get along well&quot; retain the relevant meanings, and the adopted rules of inference permit the statements to be judged contradictory.</p>
+<p>Within such a semantic and logical framework, the contradiction judgment may hold. But judging that two interpreted propositions contradict one another must be distinguished from judging that the author actually adopts this framework and holds both propositions. The former assesses relations between reconstructed views; the latter additionally attributes meanings, premises, and inferential practices to the author.</p>
+<p>This distinction does not require readers to suspend judgment. An author&#x27;s other statements, the context of writing, linguistic habits, and usages shared by a group can make some interpretations more worthy of consideration than others. On this basis, we may tentatively attribute a view to the author and revise the attribution as further material becomes available. The grounds for a tentative interpretation, however, do not automatically guarantee that we have fully grasped the author&#x27;s actual framework.</p>
+<p>Evaluating those grounds also requires interpretation. Questions such as &quot;What is the ordinary usage?&quot;, &quot;Has the author already explained this?&quot;, and &quot;Is there any evidence for a different reading?&quot; cannot be settled independently of textual interpretation. We cannot acknowledge that the original text requires interpretation while treating all the context and standards used to assess it as transparent.</p>
+<p>The same point applies to a critic&#x27;s own wording. Someone who acknowledges the possibility of misinterpretation and is willing to revise in light of new evidence may still say, &quot;The author contradicts themself here.&quot; We need to consider the context to determine the strength of this commitment. That sentence alone does not establish that the critic has unconditionally equated the reconstruction with the author&#x27;s actual thought.</p>
+<h2 id="3-inductive-bias-in-model-formation-and-revision">3. Inductive Bias in Model Formation and Revision</h2>
+<p>This essay borrows &quot;inductive bias&quot; from machine learning to discuss how interpreters select among possibilities and use past information in making those selections. The concept concerns ways of forming and revising interpretations. A particular assumption about an author is one result of selection; it is not identical to the abstract concept of inductive bias.</p>
+<p>Before communication begins, B already has some interpretive model of A. Drawing on A&#x27;s previous statements, their past encounters, or knowledge of language users in general, B may anticipate how A uses a word, organizes reasons, and understands a question. A has corresponding expectations about B. Even if they have never met, both may rely on shared tendencies acquired through earlier encounters with others.</p>
+<p>Inductive bias continues to operate when new text is received. B must not only interpret what A now says but also decide which parts of the existing model to revise, which judgments to retain, and how widely a revision should apply. After A clarifies a word, B may treat that meaning as specific to this occasion, as A&#x27;s habitual usage, or as evidence of a more general group usage. These choices likewise depend on how B uses prior information.</p>
+<p>Initial modeling before an exchange and model revision during it are therefore both sites at which inductive bias operates. They need not be classified in advance as two independent mechanisms. Mitchell&#x27;s discussion of biases in the expressible hypothesis space and in search or selection procedures likewise shows that the concept is not restricted to the hypothesis initially accepted (Mitchell 1980).</p>
+<p>Inductive bias has both individual and shared aspects. Personal experience leads readers to develop different interpretive tendencies, while sustained interaction makes some tendencies shared within a group. These tendencies also influence which interpretation we regard as &quot;closer&quot; to an author. Selecting a framework and assessing its closeness are thus closely connected, while retaining distinct roles; they cannot simply be treated as the same concept.</p>
+<h2 id="4-interactive-calibration-through-mutual-interpretation">4. Interactive Calibration through Mutual Interpretation</h2>
+<p>Communication can be described through a model in which A and B repeatedly exchange teacher and student roles. A first produces a text. B interprets it using a model of A, then produces another text that paraphrases this understanding and requests confirmation. A must first interpret B&#x27;s paraphrase before judging whether B has understood. A&#x27;s confirmation or correction is, in turn, passed back to B for interpretation.</p>
+<p>The person providing clarification is therefore also learning how to understand the other participant. While B asks about A&#x27;s intention, A infers what B&#x27;s question means; after A responds, B uses an understanding of A to decide how to adjust the model. &quot;Teacher&quot; and &quot;student&quot; designate roles within the exchange. Neither role gives a participant direct access to the other&#x27;s understanding without interpretation.</p>
+<p>This process depends on some prior, partial shared understanding. B must roughly understand expressions such as &quot;You have misunderstood me&quot; or &quot;I only mean that cooperation is possible&quot; in order to use them in revision. Shared meanings and expressive habits allow such feedback to convey information. Research on dialogue already provides relevant accounts of partner learning and population conventions. CHAI, for example, examines both learning about particular partners and the formation of expectations shared across partners (Hawkins et al. 2023).</p>
+<p>Calibration also changes expression itself. If A wants B to understand with less clarification, A must adjust the wording in light of an understanding of B. What A chooses as a &quot;clearer&quot; formulation therefore includes an expectation about how B will interpret it. B makes corresponding adjustments. Communication changes participants&#x27; models of one another and can also gradually produce expressive habits that make mutual understanding easier.</p>
+<p>Through interactions with different people, individuals also judge whether a usage belongs to a particular partner or is relatively widespread within a group. With a new partner, these earlier judgments supply a starting point that is revised through further feedback. Shared interpretive tendencies thus enter individual exchanges, while exchanges between individuals continue to shape those shared tendencies.</p>
+<h2 id="5-shared-understanding-and-an-author-s-initial-intention">5. Shared Understanding and an Author&#x27;s Initial Intention</h2>
+<p>Calibration may be indicated by a participant&#x27;s ability to paraphrase the other&#x27;s meaning, acceptance of the paraphrase, and a reduced need for repeated clarification. Such indicators support the judgment that participants understand one another better in the current exchange. By themselves, however, they neither guarantee identical understanding nor establish whether the initial intention has been recovered.</p>
+<p>Consider the following exchange:</p>
+<blockquote><p><strong>A:</strong> Humans should get along well with AI.</p><p><strong>B:</strong> Do you mean that we can cooperate with AI, but should not trust it unconditionally?</p><p><strong>A:</strong> Yes.</p></blockquote>
+<p>A may have intended this all along, or may have accepted the qualification only after hearing B&#x27;s paraphrase. A&#x27;s confirmation can help establish a current shared understanding without, by itself, identifying which history occurred. Participants may change what they intended to express while trying to understand each other. The distinction between an antecedent intention and one formed or modified during interaction has already received direct attention in pragmatics (Elder and Haugh 2018).</p>
+<p>We therefore need to distinguish coordination in dialogue from the attribution of an earlier intention. Coordination may occur through changes on both sides. Attribution requires interpreting earlier and later material to judge how a later expression relates to an earlier intention. New material may make a judgment more credible, but that material itself still requires interpretation.</p>
+<p>Likewise, a group of readers may increasingly understand one another through discussion while collectively misreading an author. Agreement on an interpretation indicates a degree of coordination among the readers; it does not directly establish that they have recovered the intended meaning. Even if they later say, &quot;We misread the author before,&quot; this correction involves reassessing the earlier understanding through a framework they now accept.</p>
+<p>Shared understanding must also be distinguished from agreement with a view. Participants may share some understanding of &quot;humans,&quot; &quot;should,&quot; &quot;AI,&quot; and &quot;get along well,&quot; yet continue to disagree about whether or how cooperation should occur. Understanding a claim does not require accepting it.</p>
+<h2 id="6-why-criticism-can-remain-meaningful-when-it-misses-the-intended-meaning">6. Why Criticism Can Remain Meaningful When It Misses the Intended Meaning</h2>
+<p>Now stipulate that when A says, &quot;Humans should get along well with AI,&quot; A initially means only that cooperation is possible. B interprets this as endorsing unconditional trust and objects that AI can make mistakes. In this thought experiment, B misunderstands A. Yet this does not directly cancel all of the criticism&#x27;s intellectual value.</p>
+<p>First, B&#x27;s reconstructed view remains open to discussion. Given the meanings adopted in the example, B can ask why trust should require neither checking nor limits when AI can make mistakes. Whether the objection is adequately supported depends on the specific argument. The issue it raises, however, does not presuppose that A originally endorsed unconditional trust. Assessing the reconstructed view and accurately attributing that view to A can be considered separately.</p>
+<p>Second, the criticism may prompt both participants to clarify the distinction between cooperation and trust. A explains what willingness to cooperate means, while B adjusts an earlier understanding of the relation between the two concepts. The discussion may make their conceptual relations clearer and subsequent expressions easier to understand. These gains can follow an initial misunderstanding without retroactively turning that misunderstanding into a successful refutation of the intended meaning.</p>
+<p>Interpretive activities may have different aims. Brandom&#x27;s distinction between de dicto and de re interpretation, and Rorty&#x27;s distinction between historical and rational reconstruction, provide resources for discussing these aims (Brandom 2004; Rorty 1998). Examining consequences an author did not anticipate is not thereby a misreading. The point here is that intellectual gains and attribution of authorial intention require separate explanations: success in one cannot substitute for success in the other.</p>
+<p>A further, especially significant value concerns what criticism reveals about shared understanding. Why does B interpret &quot;get along well&quot; as &quot;trust unconditionally&quot;? What meanings does B use, which premises are supplied, and what patterns of inference are adopted? In assessing an object, criticism also makes the interpretive practices that produced that object available for examination.</p>
+<p>If several readers repeatedly use similar meanings, implicit premises, and inferential patterns, this repetition may, to some extent, reflect inductive biases shared within a group. Even if they jointly misunderstand A, their criticisms still provide information about how that group understands, connects, and evaluates concepts. What criticism helps us understand therefore concerns not only the author under criticism but also the critics and the interpretive practices in which they participate.</p>
+<p>This direction is close to Fish&#x27;s discussion of interpretive communities. His example of reading a list of names as a poem makes the meaning-organizing practices of readers with shared training an object of analysis (Fish 1980). Garfinkel&#x27;s examination of shared backgrounds through the clarification, reproach, and repair prompted by disruptions of everyday expectations offers another relevant comparison (Garfinkel 1967, chap. 2). The present essay brings this line of inquiry into philosophical criticism: examining criticism&#x27;s content and process can allow us to assess views while also learning about recurring shared interpretive tendencies.</p>
+<p>Such inquiry concerns what recurs within criticisms, rather than merely how many criticisms occur. The same conclusion may arise from different interpretations, while the same interpretation may elicit either agreement or opposition. Judgments about a group based on similar responses should be understood in relation to their context and scope.</p>
+<p>The suggestion that greater departure from a shared framework may elicit more misunderstanding or criticism can be retained as a statistical conjecture. Yet when the departure is sufficiently large, readers may instead treat the text as gibberish and withdraw from discussion. The number of criticisms cannot therefore serve directly as a measure of departure. Recurring word meanings, premises, and patterns of inference provide the more specific material for the inquiry proposed here.</p>
+<h2 id="7-reflexivity-and-the-continuation-of-criticism">7. Reflexivity and the Continuation of Criticism</h2>
+<p>Analyzing criticism is itself an interpretive activity. When researchers judge which premises a criticism uses or whether certain readers share an understanding, they too reconstruct views from finite texts. Inductive bias does not disappear when criticism becomes the object of analysis. The limits this essay places on attributing intention also apply to its own judgments about readers and groups.</p>
+<p>This reflexivity does not imply that no information is available. Original texts can convey partial information, and critical texts can do so as well. Communication can revise interpretations, and discussion among researchers can revise their understanding of criticism. The resulting conclusions can be open to revision while retaining epistemic value.</p>
+<p>Philosophical criticism can consequently be understood as an ongoing activity of reconstruction, assessment, and calibration. It addresses views readers form from finite material, proceeds through individual and shared inductive biases, and may change these interpretive tendencies through communication. Whether a criticized view is accurately attributed to an author, whether the criticism raises a well-supported objection to the reconstructed view, and whether it improves our understanding of shared interpretive practices are related judgments that cannot simply be equated.</p>
+<p>The philosophical significance of criticism thus does not depend entirely on recovering authorial intention. Criticism can support the assessment of views and the clarification of concepts. In particular, it can make recurring but often unstated meanings, premises, and patterns of inference available for examination. Acknowledging the limits of intention attribution allows us to describe more accurately what criticism has accomplished and to continue criticizing while remaining open to revision.</p>
+<h2 id="references">References</h2>
+<p>Brandom, Robert. 2004. &quot;Hermeneutic Practice and Theories of Meaning.&quot; <em>SATS</em> 5(1): 5-26. <a href="https://doi.org/10.1515/SATS.2004.5">https://doi.org/10.1515/SATS.2004.5</a>. <a href="https://sites.pitt.edu/~rbrandom/Texts/Hermeneutic%20Practices%20and%20Theories%20of%20Meaning.pdf">Author&#x27;s text</a>.</p>
+<p>Elder, Chi-Hé, and Michael Haugh. 2018. &quot;The Interactional Achievement of Speaker Meaning: Toward a Formal Account of Conversational Inference.&quot; <em>Intercultural Pragmatics</em> 15(5): 593-625. <a href="https://doi.org/10.1515/ip-2018-0021">https://doi.org/10.1515/ip-2018-0021</a>.</p>
+<p>Fish, Stanley. 1980. &quot;How to Recognize a Poem When You See One.&quot; In <em>Is There a Text in This Class? The Authority of Interpretive Communities</em>. Harvard University Press. <a href="https://www.umsl.edu/~gradyf/theory/fish.htm">Online excerpt</a>.</p>
+<p>Garfinkel, Harold. 1967. <em>Studies in Ethnomethodology</em>. Prentice-Hall. <a href="https://www.slideshare.net/slideshow/harold-garfinkel-studies-in-ethnomethodology/52834432">Book scan</a>.</p>
+<p>Hawkins, Robert D., et al. 2023. &quot;From Partners to Populations: A Hierarchical Bayesian Account of Coordination and Convention.&quot; <em>Psychological Review</em> 130(4): 977-1016. <a href="https://doi.org/10.1037/rev0000348">https://doi.org/10.1037/rev0000348</a>.</p>
+<p>Mitchell, Tom M. 1980. <em>The Need for Biases in Learning Generalizations</em>. Technical Report CBM-TR-117, Rutgers University. <a href="https://www.cs.cmu.edu/~tom/pubs/NeedForBias_1980.pdf">Author-hosted electronic version</a>.</p>
+<p>Rorty, Richard. 1998. &quot;The Historiography of Philosophy: Four Genres.&quot; In <em>Truth and Progress</em>, 247-273. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511625404.014">https://doi.org/10.1017/CBO9780511625404.014</a>.</p>
+    </article>
+    <p class="endnote">版本：2026-10-17 英文初稿。论文与手稿区域会随研究进展更新，本文保留该版本的日期与状态。</p>
+  </main>
+  <footer><div class="wrap footer-row"><span>© 2026 ShenHan · 论文与手稿</span><a href="../index.html#papers">返回论文与手稿 ↑</a></div></footer>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const button = document.getElementById('theme-toggle');
+      const apply = (dark) => {
+        root.dataset.theme = dark ? 'dark' : 'light';
+        button.setAttribute('aria-pressed', String(dark));
+        button.setAttribute('aria-label', dark ? '切换到浅色主题' : '切换到深色主题');
+      };
+      try { apply(localStorage.getItem('shenhan-theme') === 'dark'); } catch (_) { apply(false); }
+      button.addEventListener('click', () => {
+        const dark = root.dataset.theme !== 'dark';
+        apply(dark);
+        try { localStorage.setItem('shenhan-theme', dark ? 'dark' : 'light'); } catch (_) {}
+      });
+    })();
+  </script>
+</body>
+</html>

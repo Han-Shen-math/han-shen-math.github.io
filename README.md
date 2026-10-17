@@ -10,6 +10,8 @@ GitHub Pages 静态研究主页，围绕具身智能与世界模型、大模型�
 
 - `index.html`：网站内容、布局与深浅主题切换。
 - `research-notes.html`：从具身经验到世界模型的初步研究设想。
+- `papers/finite-texts-authorial-intention.html`：作者意图与哲学批判英文初稿的网页全文。
+- `assets/papers/finite-texts-authorial-intention-2026-10-17.pdf`：对应的六页英文 PDF 原稿。
 
 ## 发布
 
@@ -26,6 +28,10 @@ GitHub Pages 静态研究主页，围绕具身智能与世界模型、大模型�
 ## 后续更新
 
 在 `index.html` 中修改简介、项目和记录入口；研究笔记保存在 `research-notes.html`。提交到 `main` 后会触发自动更新。
+
+## 论文与手稿
+
+首页 `#papers` 为论文与手稿区域，顶部导航在电脑与手机端均保留“论文”入口。第一篇为 *Finite Texts, Authorial Intention, and Philosophical Criticism*（2026-10-17，English draft），提供网页全文和 PDF 下载。沿用原稿的草稿状态，不标记为已发表、已录用或在审。新增文章时在该区域添加条目，并在 `papers/` 和 `assets/papers/` 放置对应网页及 PDF；保留明确日期与版本状态。
 
 ## 近期公开贡献
 
